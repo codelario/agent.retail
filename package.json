@@ -1,0 +1,21 @@
+{
+  "name": "learning-arch-project",
+  "private": true,
+  "scripts": {
+    "dev": "turbo dev",
+    "serve": "turbo serve",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "test": "turbo test"
+  },
+  "devDependencies": {
+    "@angular/cli": "^19.2.22",
+    "turbo": "latest",
+    "typescript": "^5.4.0"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  }
+}

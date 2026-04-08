@@ -1,0 +1,58 @@
+service: learning-client-api
+
+frameworkVersion: '3'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    DATABASE_URL: ${env:DATABASE_URL}
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:4200  # Angular Shell
+        - http://localhost:3001  # client-mfe
+        - http://localhost:3002  # notification-mfe
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    target: node22
+    platform: node
+  serverless-offline:
+    httpPort: ${env:API_PORT, '3010'}
+    lambdaPort: 3510
+    noPrependStageInUrl: true
+
+functions:
+  getClients:
+    handler: src/handlers/getClientsHandler.handler
+    events:
+      - httpApi:
+          path: /clients
+          method: GET
+  createClient:
+    handler: src/handlers/createClientHandler.handler
+    events:
+      - httpApi:
+          path: /clients
+          method: POST
+

@@ -1,0 +1,31 @@
+{
+  "name": "@learning/client-api",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "serverless offline",
+    "serve": "serverless offline",
+    "deploy": "serverless deploy"
+  },
+  "dependencies": {
+    "@learning/entities": "workspace:*",
+    "@learning/logger": "workspace:*",
+    "@middy/core": "^5.0.0",
+    "@middy/http-cors": "^5.0.0",
+    "@middy/http-error-handler": "^5.0.0",
+    "@middy/http-json-body-parser": "^5.0.0",
+    "ajv": "^8.18.0",
+    "ajv-formats": "^3.0.1",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.140",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.20.0",
+    "esbuild": "^0.25.0",
+    "serverless": "^3.0.0",
+    "serverless-esbuild": "^1.52.0",
+    "serverless-offline": "^14.0.0",
+    "typescript": "~5.9.3"
+  }
+}

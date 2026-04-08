@@ -1,0 +1,26 @@
+{
+  "name": "@learning/notification-mfe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "serve": "concurrently \"vite build --watch\" \"vite preview\""
+  },
+  "dependencies": {
+    "@r2wc/react-to-web-component": "^2.1.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.4.1",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "concurrently": "^9.2.1",
+    "typescript": "~5.9.3",
+    "vite": "^8.0.1"
+  }
+}
