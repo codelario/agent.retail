@@ -1,0 +1,5 @@
+.build/
+.esbuild/
+.serverless/
+node_modules/
+.env

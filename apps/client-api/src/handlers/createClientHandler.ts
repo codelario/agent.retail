@@ -32,7 +32,12 @@ const baseHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayPro
 // 5. httpErrorHandler()            → captura errores no manejados → respuesta HTTP
 export const handler = middy(baseHandler)
   .use(httpJsonBodyParser())
-  .use(mockJwtMiddleware())
   .use(schemaValidatorMiddleware(createClientSchema))
   .use(cors())
   .use(httpErrorHandler());
+// export const handler = middy(baseHandler)
+//   .use(httpJsonBodyParser())
+//   .use(mockJwtMiddleware())
+//   .use(schemaValidatorMiddleware(createClientSchema))
+//   .use(cors())
+//   .use(httpErrorHandler());

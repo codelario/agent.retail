@@ -1,0 +1,82 @@
+service: learning-voice-bff
+
+frameworkVersion: '3'
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+  region: us-east-1
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    ANTHROPIC_API_KEY: ${env:ANTHROPIC_API_KEY, ''}
+    OPENAI_API_KEY: ${env:OPENAI_API_KEY, ''}
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:4200  # Angular Shell
+        - http://localhost:3001  # client-mfe
+        - http://localhost:3002  # notification-mfe
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+        - OPTIONS
+      allowedHeaders:
+        - Content-Type
+        - Authorization
+
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+custom:
+  esbuild:
+    bundle: true
+    minify: false
+    sourcemap: true
+    target: node22
+    platform: node
+  serverless-offline:
+    httpPort: ${env:API_PORT, '3020'}
+    lambdaPort: 3520
+    noPrependStageInUrl: true
+
+functions:
+  getSlots:
+    handler: src/handlers/getSlotsHandler.handler
+    events:
+      - httpApi:
+          path: /slots
+          method: GET
+  lookupPatient:
+    handler: src/handlers/lookupPatientHandler.handler
+    events:
+      - httpApi:
+          path: /patients/lookup
+          method: POST
+  bookAppointment:
+    handler: src/handlers/bookAppointmentHandler.handler
+    events:
+      - httpApi:
+          path: /appointments
+          method: POST
+  cancelAppointment:
+    handler: src/handlers/cancelAppointmentHandler.handler
+    events:
+      - httpApi:
+          path: /appointments/{id}/cancel
+          method: PUT
+  rescheduleAppointment:
+    handler: src/handlers/rescheduleAppointmentHandler.handler
+    events:
+      - httpApi:
+          path: /appointments/{id}/reschedule
+          method: PUT
+  aiRespond:
+    handler: src/handlers/aiRespondHandler.handler
+    events:
+      - httpApi:
+          path: /ai/respond
+          method: POST

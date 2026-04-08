@@ -244,6 +244,58 @@ importers:
         specifier: ~5.7.2
         version: 5.7.3
 
+  apps/voice-bff:
+    dependencies:
+      '@anthropic-ai/sdk':
+        specifier: ^0.86.1
+        version: 0.86.1(zod@3.25.76)
+      '@learning/logger':
+        specifier: workspace:*
+        version: link:../../packages/logger
+      '@middy/core':
+        specifier: ^5.0.0
+        version: 5.5.1
+      '@middy/http-cors':
+        specifier: ^5.0.0
+        version: 5.5.1
+      '@middy/http-error-handler':
+        specifier: ^5.0.0
+        version: 5.5.1
+      '@middy/http-json-body-parser':
+        specifier: ^5.0.0
+        version: 5.5.1
+      ajv:
+        specifier: ^8.18.0
+        version: 8.18.0
+      ajv-formats:
+        specifier: ^3.0.1
+        version: 3.0.1(ajv@8.18.0)
+      openai:
+        specifier: ^6.33.0
+        version: 6.33.0(ws@7.5.10)(zod@3.25.76)
+    devDependencies:
+      '@types/aws-lambda':
+        specifier: ^8.10.140
+        version: 8.10.161
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.15
+      esbuild:
+        specifier: ^0.25.0
+        version: 0.25.4
+      serverless:
+        specifier: ^3.0.0
+        version: 3.40.0(@types/node@22.19.15)(encoding@0.1.13)
+      serverless-esbuild:
+        specifier: ^1.52.0
+        version: 1.57.0(esbuild@0.25.4)
+      serverless-offline:
+        specifier: ^14.0.0
+        version: 14.5.0(serverless@3.40.0(@types/node@22.19.15)(encoding@0.1.13))
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+
   packages/auth:
     dependencies:
       react:
@@ -450,6 +502,15 @@ packages:
       '@angular/core': 19.2.20
       '@angular/platform-browser': 19.2.20
       rxjs: ^6.5.3 || ^7.4.0
+
+  '@anthropic-ai/sdk@0.86.1':
+    resolution: {integrity: sha512-Q32GUFCVMmTJrVQC4bQOG2mA8rGNuYWJP8ODufxl3g5Awy1VjY5wy0Xm+mC++i5rBkZMvxhzOR9MNTW7IvIAmw==}
+    hasBin: true
+    peerDependencies:
+      zod: ^3.25.0 || ^4.0.0
+    peerDependenciesMeta:
+      zod:
+        optional: true
 
   '@aws-crypto/crc32@5.2.0':
     resolution: {integrity: sha512-nLbCWqQNgUiwwtFsen1AdzAtvuLRsQS8rYgMuxCrdKf9kOssamGLuPwyTY9wyYblNr9+1XM8v6zoDTPPSIeANg==}
@@ -5238,6 +5299,10 @@ packages:
     engines: {node: '>=0.8'}
     hasBin: true
 
+  json-schema-to-ts@3.1.1:
+    resolution: {integrity: sha512-+DWg8jCJG2TEnpy7kOm/7/AxaYoaRbjVB4LFZLySZlWn8exGs3A4OLJR966cVvU26N7X9TWxl+Jsw7dzAqKT6g==}
+    engines: {node: '>=16'}
+
   json-schema-traverse@0.4.1:
     resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
 
@@ -5968,6 +6033,18 @@ packages:
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
+
+  openai@6.33.0:
+    resolution: {integrity: sha512-xAYN1W3YsDXJWA5F277135YfkEk6H7D3D6vWwRhJ3OEkzRgcyK8z/P5P9Gyi/wB4N8kK9kM5ZjprfvyHagKmpw==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.25 || ^4.0
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -7087,6 +7164,9 @@ packages:
     resolution: {integrity: sha512-pkonvlKk8/ZuR0D5tLW8ljt5I8kmxp2XKymhepUeOdCEfKpZaktSArkLHZt76OB1ZvO9bssUsDty4SWhLvZpLg==}
     engines: {node: '>=0.10.0'}
 
+  ts-algebra@2.0.0:
+    resolution: {integrity: sha512-FPAhNPFMrkwz76P7cdjdmiShwMynZYN6SgOujD1urY4oNm80Ou9oMdmbR45LotcKOXoy7wSmHkRFE6Mxbrhefw==}
+
   ts-api-utils@2.5.0:
     resolution: {integrity: sha512-OJ/ibxhPlqrMM0UiNHJ/0CKQkoKF243/AEmplt3qpRgkW8VG7IfOS41h7V8TjITqdByHzrjcS/2si+y4lIh8NA==}
     engines: {node: '>=18.12'}
@@ -7923,6 +8003,12 @@ snapshots:
       '@angular/platform-browser': 19.2.20(@angular/common@19.2.20(@angular/core@19.2.20(rxjs@7.8.1)(zone.js@0.15.1))(rxjs@7.8.1))(@angular/core@19.2.20(rxjs@7.8.1)(zone.js@0.15.1))
       rxjs: 7.8.1
       tslib: 2.8.1
+
+  '@anthropic-ai/sdk@0.86.1(zod@3.25.76)':
+    dependencies:
+      json-schema-to-ts: 3.1.1
+    optionalDependencies:
+      zod: 3.25.76
 
   '@aws-crypto/crc32@5.2.0':
     dependencies:
@@ -13886,6 +13972,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  json-schema-to-ts@3.1.1:
+    dependencies:
+      '@babel/runtime': 7.26.10
+      ts-algebra: 2.0.0
+
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
@@ -14665,6 +14756,11 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  openai@6.33.0(ws@7.5.10)(zod@3.25.76):
+    optionalDependencies:
+      ws: 7.5.10
+      zod: 3.25.76
 
   optionator@0.9.4:
     dependencies:
@@ -16036,6 +16132,8 @@ snapshots:
   trim-repeated@1.0.0:
     dependencies:
       escape-string-regexp: 1.0.5
+
+  ts-algebra@2.0.0: {}
 
   ts-api-utils@2.5.0(typescript@5.9.3):
     dependencies:

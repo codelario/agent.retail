@@ -36,7 +36,7 @@ export class ClientDashboardComponent implements OnInit, OnDestroy {
       window.dispatchEvent(
         new CustomEvent('learning.auth-ready', { detail: { token } })
       );
-    }, { once: true });
+    });
 
     window.addEventListener('learning.client-action', this.clientActionHandler);
 

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(md|json\\)$\")",
+      "Bash(grep -E \"\\(^[^.]+$|\\\\.ts$|\\\\.tsx$|\\\\.json$\\)\")",
+      "Bash(find /Users/gato/Documents/Repositories/agent.retail/apps/client-api/src -type f -name *.ts)",
+      "Bash(find /Users/gato/Documents/Repositories/agent.retail/apps/voice-bff -type f -name *.ts)",
+      "Bash(pnpm exec:*)",
+      "Bash(pnpm:*)",
+      "Bash(grep -E \"\\\\.\\(json|yml|yaml|ts\\)$\")"
+    ]
+  }
+}
