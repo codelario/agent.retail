@@ -15,6 +15,7 @@ import { EmpathyAgent } from '../ai/agents/EmpathyAgent';
 import { AgentSelector } from '../ai/AgentSelector';
 import { AiRespondUsecase } from '../usecases/aiRespondUsecase';
 import { GoogleProvider } from '../ai/providers/GoogleProvider';
+import { OpenAIProvider } from '../ai/providers/OpenAIProvider';
 
 // Composition Root — único lugar donde se instancian y conectan los servicios.
 // Los getters son lazy: solo se instancian la primera vez que se acceden.
@@ -80,14 +81,17 @@ class ServiceFactory {
 
   // AI providers — configurados con modelos específicos
   // Para cambiar extraction a OpenAI: reemplazar this.anthropicHaiku por new OpenAIProvider('gpt-4o-mini')
+  private get openAi4oMini() { return new OpenAIProvider('gpt-4o-mini'); }
   private get anthropicSonnet() { return new AnthropicProvider('claude-sonnet-4-6'); }
   private get anthropicHaiku()  { return new AnthropicProvider('claude-haiku-4-5-20251001'); }
-  // private get googleHaiku()  { return new GoogleProvider('claude-haiku-4-5-20251001'); }
+  private get googleGemini3()  { return new GoogleProvider('gemini-1.5-flash'); }
 
   // AI agents — provider inyectado como dependencia (Open/Closed: cambiar provider sin tocar el agente)
-  private get reasoningAgent()  { return new ReasoningAgent(this.anthropicSonnet); }
+  private get reasoningAgent()  { return new ReasoningAgent(this.openAi4oMini); }
+  // private get reasoningAgent()  { return new ReasoningAgent(this.anthropicSonnet); }
   private get extractionAgent() { return new ExtractionAgent(this.anthropicHaiku); }
-  private get empathyAgent()    { return new EmpathyAgent(this.anthropicSonnet); }
+  // private get empathyAgent()    { return new EmpathyAgent(this.anthropicSonnet); }
+  private get empathyAgent()    { return new EmpathyAgent(this.googleGemini3); }
 
   get agentSelector(): AgentSelector {
     if (!this._agentSelector) {

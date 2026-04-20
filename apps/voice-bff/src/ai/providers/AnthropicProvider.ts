@@ -8,6 +8,7 @@ export class AnthropicProvider implements IModelProvider {
   constructor(readonly modelId: string) {}
 
   async complete(prompt: string, system: string, maxTokens: number, temperature: number): Promise<string> {
+    console.log("---------------- AnthropicProvider ------------")
     const msg = await this.client.messages.create({
       model: this.modelId,
       max_tokens: maxTokens,
@@ -16,5 +17,5 @@ export class AnthropicProvider implements IModelProvider {
       messages: [{ role: 'user', content: prompt }],
     })
     return (msg.content[0] as Anthropic.TextBlock).text
-  }
+  } 
 }

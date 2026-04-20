@@ -26,6 +26,6 @@ const baseHandler = async (event: APIGatewayProxyEventV2): Promise<APIGatewayPro
 
 export const handler = middy(baseHandler)
   .use(httpJsonBodyParser())
-  .use(schemaValidatorMiddleware(aiRespondSchema))
+  // .use(schemaValidatorMiddleware(aiRespondSchema))
   .use(cors())
   .use(httpErrorHandler())
